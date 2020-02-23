@@ -7,7 +7,7 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.concurrent.thread
 
-class MockServer(private val port: Int) {
+class MockServer(port: Int) {
 
     val requests = ArrayList<String>()
 
@@ -39,6 +39,7 @@ class MockServer(private val port: Int) {
 
     fun stop() {
         running = false
+        serverSocket.close()
     }
 
     fun whenRequest(command: String, response: String) {

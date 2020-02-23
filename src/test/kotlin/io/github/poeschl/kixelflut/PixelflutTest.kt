@@ -10,9 +10,9 @@ import kotlin.random.Random
 
 internal class PixelflutTest {
 
-    private val testPort = 50000 + Random.nextInt(10)
+    private val testPort = 12345
     private val mockServer = MockServer(testPort)
-    private val interfaceToTest = Pixelflut("localhost", testPort)
+    private val interfaceToTest = Pixelflut("127.0.0.1", testPort)
 
     @BeforeEach
     internal fun setUp() {

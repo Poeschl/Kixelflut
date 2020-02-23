@@ -1,4 +1,4 @@
-# Kixelflut
+# Kixelflut [![Travis master](https://img.shields.io/travis/Poeschl/Kixelflut/master.svg?maxAge=3600)](https://travis-ci.org/Poeschl/Kixelflut/)
 
 A [Pixelflut](https://github.com/defnull/pixelflut) interface for Java and Kotlin written in Kotlin.
 
