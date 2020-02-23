@@ -4,7 +4,7 @@ A [Pixelflut](https://github.com/defnull/pixelflut) interface for Java and Kotli
 
 ## Installation
 
-![Latest version](https://img.shields.io/bintray/v/poeschl/maven/Kixelflut.svg?label=latest%20release&maxAge=3600)
+[![Latest version](https://img.shields.io/bintray/v/poeschl/maven/Kixelflut.svg?label=latest%20release&maxAge=3600)](https://bintray.com/poeschl/maven/Kixelflut)
 
 Kixelflut is available via jCenter, so copy one of the snippets below into your maven or gradle project and it will be installed.
 
