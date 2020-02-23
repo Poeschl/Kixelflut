@@ -13,7 +13,7 @@ plugins {
     id "maven-publish"
 }
 
-group 'io.github.poeschl.kixelflut'
+group 'io.github.poeschl'
 sourceCompatibility = JavaVersion.VERSION_1_8
 
 compileKotlin {
