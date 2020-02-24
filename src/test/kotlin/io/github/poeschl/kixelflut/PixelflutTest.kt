@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.awt.Color
+import java.lang.Thread.sleep
 import kotlin.random.Random
 
 internal class PixelflutTest {
@@ -59,6 +60,7 @@ internal class PixelflutTest {
         interfaceToTest.paintPixelSet(pixels)
 
         //VERIFY
+        sleep(100) //wait a bit for the requests
         assertThat(mockServer.requests).containsExactlyInAnyOrder("PX 12 23 0000FF", "PX 21 32 FF0000")
     }
 
