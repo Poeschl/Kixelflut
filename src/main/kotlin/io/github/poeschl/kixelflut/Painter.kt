@@ -21,6 +21,13 @@ abstract class Painter {
     }
 
     /**
+     * Stops the rendering loop.
+     */
+    fun stop() {
+        runningRender = false
+    }
+
+    /**
      * Put any code which should run before the first render loop in here.
      */
     abstract fun init()
