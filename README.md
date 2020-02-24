@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.github.poeschl:Kixelflut:1.0.0'
+    implementation 'io.github.poeschl:Kixelflut:{version}'
 }
 
 ```
@@ -35,7 +35,7 @@ To use it in a maven project add this in the pom.xml:
         <dependency>
           <groupId>io.github.poeschl</groupId>
           <artifactId>Kixelflut</artifactId>
-          <version>1.0.0</version>
+          <version>{version}</version>
           <type>pom</type>
         </dependency>
     </dependencies>
