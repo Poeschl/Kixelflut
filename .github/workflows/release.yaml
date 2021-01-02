@@ -51,4 +51,4 @@ jobs:
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_API_KEY }}
         run: |
-          ./gradlew --stacktrace jar publish
+          ./gradlew --stacktrace jar bintrayPublish bintrayUpload
