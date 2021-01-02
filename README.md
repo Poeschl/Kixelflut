@@ -49,5 +49,7 @@ The Pixelflut interface is located in the `Pixelflut` class. There are the basic
 
 Additional utils for drawing lines or areas can be found in `DrawUtils`.
 
-To get yourself going very fast the `Painter` class is a nice way to inherit.
+To get yourself going fast the `Painter` class is a nice way to inherit.
 For examples take a look at the [Mazedrawer classes](https://github.com/Poeschl/PixelMaze/blob/master/src/main/kotlin/io/github/poeschl/pixelflutmaze/labyrinth/LabyrinthDrawer.kt).
+
+The interface uses KotlinLogging for logging output and will put it to any slf4j logger available.

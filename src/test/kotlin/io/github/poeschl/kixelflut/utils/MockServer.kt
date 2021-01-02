@@ -1,13 +1,14 @@
 package io.github.poeschl.kixelflut.utils
 
-import java.io.*
+import mu.KotlinLogging
 import java.net.ServerSocket
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 import kotlin.concurrent.thread
 
 class MockServer(port: Int) {
+
+    companion object {
+        val LOGGER = KotlinLogging.logger {}
+    }
 
     val requests = ArrayList<String>()
 
@@ -19,17 +20,21 @@ class MockServer(port: Int) {
         running = true
         thread {
             val client = serverSocket.accept()
-            println("Client connected: ${client.inetAddress.hostAddress}")
+            LOGGER.info { "Client connected: ${client.inetAddress.hostAddress}" }
 
             thread {
                 while (running) {
-                    val reader = Scanner(client.getInputStream())
-                    val writer: BufferedWriter = client.getOutputStream().bufferedWriter()
-                    val command = reader.nextLine();
-                    println("Received command '$command'")
-                    requests.add(command)
+                    val reader = client.getInputStream().bufferedReader()
+                    val writer = client.getOutputStream().bufferedWriter()
+                    var wholeCommand = ""
+                    do {
+                        val command = reader.readLine();
+                        wholeCommand += command + "\n"
+                    } while (reader.ready())
 
-                    val response = whenCases.getOrDefault(command, "")
+                    LOGGER.info { "Received command '${wholeCommand.replace("\n", "|")}'" }
+                    requests.add(wholeCommand)
+                    val response = whenCases.getOrDefault(wholeCommand, "")
                     writer.write(response + '\n')
                     writer.flush()
                 }

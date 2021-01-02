@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.awt.Color
 import java.lang.Thread.sleep
-import kotlin.random.Random
 
 internal class PixelflutTest {
 
@@ -22,6 +21,7 @@ internal class PixelflutTest {
 
     @AfterEach
     internal fun tearDown() {
+        interfaceToTest.close()
         mockServer.stop()
     }
 
@@ -30,10 +30,10 @@ internal class PixelflutTest {
         //WHEN
         val expected = Pair(42, 78)
 
-        mockServer.whenRequest("SIZE", "SIZE ${expected.first} ${expected.second}")
+        mockServer.whenRequest("SIZE\n", "SIZE ${expected.first} ${expected.second}")
 
         //THEN
-        val size = interfaceToTest.getPlaygroundSize()
+        val size = interfaceToTest.getScreenSize()
 
         //VERIFY
         assertThat(size).isEqualTo(expected)
@@ -45,30 +45,43 @@ internal class PixelflutTest {
         mockServer.whenRequest("SIZE", "Something")
 
         //THEN
-        val size = interfaceToTest.getPlaygroundSize()
+        val size = interfaceToTest.getScreenSize()
 
         //VERIFY
-        assertThat(size).isEqualTo(Pair(0,0))
+        assertThat(size).isEqualTo(Pair(0, 0))
     }
 
     @Test
-    fun paintPixelSet() {
+    fun drawPixel() {
         //WHEN
-        val pixels = setOf(Pixel(Point(12,23), Color.BLUE), Pixel(Point(21,32), Color.RED))
+        val pixel = Pixel(Point(12, 23), Color.BLUE)
 
         //THEN
-        interfaceToTest.paintPixelSet(pixels)
+        interfaceToTest.drawPixel(pixel)
 
         //VERIFY
         sleep(100) //wait a bit for the requests
-        assertThat(mockServer.requests).containsExactlyInAnyOrder("PX 12 23 0000FF", "PX 21 32 FF0000")
+        assertThat(mockServer.requests).containsExactly("PX 12 23 0000FF\n")
+    }
+
+    @Test
+    fun drawPixels() {
+        //WHEN
+        val pixels = setOf(Pixel(Point(12, 23), Color.BLUE), Pixel(Point(21, 32), Color.RED))
+
+        //THEN
+        interfaceToTest.drawPixels(pixels)
+
+        //VERIFY
+        sleep(100) //wait a bit for the requests
+        assertThat(mockServer.requests).containsOnly("PX 12 23 0000FF\nPX 21 32 FF0000\n")
     }
 
     @Test
     fun getPixel() {
         //WHEN
-        val point = Point(123,654)
-        mockServer.whenRequest("PX ${point.x} ${point.y}", "PX ${point.x} ${point.y} 0000FF")
+        val point = Point(123, 654)
+        mockServer.whenRequest("PX ${point.x} ${point.y}\n", "PX ${point.x} ${point.y} 0000FF")
 
         //THEN
         val pixel = interfaceToTest.getPixel(point)
@@ -81,14 +94,35 @@ internal class PixelflutTest {
     @Test
     fun getPixel_invalid() {
         //WHEN
-        val point = Point(123,654)
+        val point = Point(123, 654)
         mockServer.whenRequest("PX ${point.x} ${point.y}", "I'm invalid")
 
         //THEN
         val pixel = interfaceToTest.getPixel(point)
 
         //VERIFY
-        assertThat(pixel.point).isEqualTo(Point(0,0))
+        assertThat(pixel.point).isEqualTo(Point(0, 0))
         assertThat(pixel.color).isEqualTo(Color.BLACK)
+    }
+
+    @Test
+    fun getPixelArea() {
+        //WHEN
+        val pixel1 = Pixel(Point(1, 1), Color.RED)
+        val pixel2 = Pixel(Point(2, 1), Color.GREEN)
+
+        mockServer.whenRequest(
+            "PX ${pixel1.point.x} ${pixel1.point.y}\n" +
+                    "PX ${pixel2.point.x} ${pixel2.point.y}\n",
+            "PX ${pixel1.point.x} ${pixel1.point.y} FF0000\n" +
+                    "PX ${pixel2.point.x} ${pixel2.point.y} 00FF00\n"
+        )
+
+
+        //THEN
+        val pixels = interfaceToTest.getPixels(Point(1, 1), Point(2, 1))
+
+        //VERIFY
+        assertThat(pixels).containsExactly(pixel1, pixel2)
     }
 }
