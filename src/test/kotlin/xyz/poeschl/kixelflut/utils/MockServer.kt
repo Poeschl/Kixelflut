@@ -1,4 +1,4 @@
-package io.github.poeschl.kixelflut.utils
+package xyz.poeschl.kixelflut.utils
 
 import mu.KotlinLogging
 import java.net.ServerSocket

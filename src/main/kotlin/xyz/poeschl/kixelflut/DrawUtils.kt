@@ -1,4 +1,4 @@
-package io.github.poeschl.kixelflut
+package xyz.poeschl.kixelflut
 
 import java.awt.Color
 import java.util.stream.Collectors

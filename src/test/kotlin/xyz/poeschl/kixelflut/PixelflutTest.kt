@@ -1,10 +1,10 @@
-package io.github.poeschl.kixelflut
+package xyz.poeschl.kixelflut
 
-import io.github.poeschl.kixelflut.utils.MockServer
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import xyz.poeschl.kixelflut.utils.MockServer
 import java.awt.Color
 import java.lang.Thread.sleep
 

@@ -1,4 +1,4 @@
-package io.github.poeschl.kixelflut
+package xyz.poeschl.kixelflut
 
 import mu.KotlinLogging
 import java.awt.Color

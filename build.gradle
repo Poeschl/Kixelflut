@@ -13,7 +13,7 @@ plugins {
     id "maven-publish"
 }
 
-group 'io.github.poeschl'
+group 'xyz.poeschl'
 sourceCompatibility = JavaVersion.VERSION_11
 
 compileKotlin {
