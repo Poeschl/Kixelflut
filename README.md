@@ -4,17 +4,14 @@ A [Pixelflut](https://github.com/defnull/pixelflut) interface for Java and Kotli
 
 ## Installation
 
-[![Latest version](https://img.shields.io/bintray/v/poeschl/maven/Kixelflut.svg?label=latest%20release&maxAge=3600)](https://bintray.com/poeschl/maven/Kixelflut)
+[![Latest version](https://img.shields.io/maven-central/v/xyz.poeschl/Kixelflut&maxAge=3600)](https://search.maven.org/search?q=xyz.poeschl)
 
-Kixelflut is available via jCenter, so copy one of the snippets below into your maven or gradle project and it will be installed.
+Kixelflut is available via Maven Central, so copy one of the snippets below into your maven or gradle project and it will be installed.
 
 ```groovy
-repositories {
-    jcenter()
-}
 
 dependencies {
-    implementation 'io.github.poeschl:Kixelflut:{version}'
+    implementation 'xyz.poeschl:Kixelflut:{version}'
 }
 
 ```
@@ -23,17 +20,10 @@ To use it in a maven project add this in the pom.xml:
 
 ```xml
 </project>
-    ...
-    <repositories>
-        <repository>
-          <id>jcenter</id>
-          <url>https://jcenter.bintray.com/</url>
-        </repository>
-    </repositories>
-    
+    ...    
     <dependencies> 
         <dependency>
-          <groupId>io.github.poeschl</groupId>
+          <groupId>xyz.poeschl</groupId>
           <artifactId>Kixelflut</artifactId>
           <version>{version}</version>
           <type>pom</type>

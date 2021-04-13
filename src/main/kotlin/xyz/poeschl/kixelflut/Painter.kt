@@ -1,4 +1,4 @@
-package io.github.poeschl.kixelflut
+package xyz.poeschl.kixelflut
 
 /**
  * This class contains a basic construct to paint inside a render loop.
@@ -8,7 +8,7 @@ abstract class Painter {
     private var runningRender = true
 
     /**
-     * Starts the loop. Make sure you implemented your logic in {@link io.github.poeschl.kixelflut.Painter#render}.
+     * Starts the loop. Make sure you implemented your logic in {@link xyz.poeschl.kixelflut.Painter#render}.
      */
     fun start() {
         init()
