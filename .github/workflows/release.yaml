@@ -50,15 +50,11 @@ jobs:
         run: |
           chmod +x ./gradlew
 
-      - name: Publish to Sonatype Staging
+      - name: Publish to Maven Central
         env:
           SIGN_KEY: ${{ secrets.SIGN_KEY }}
           SIGN_PASSWORD: ${{ secrets.SIGN_PASSWORD }}
-        run: |
-          ./gradlew --stacktrace jar signKixelflutPublication publishToSonatype
-      - name: Release to Sonatype
-        env:
           OSSRH_USER: ${{ secrets.OSSRH_USER }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
         run: |
-          ./gradlew --stacktrace closeAndReleaseSonatypeStagingRepository
+          ./gradlew --stacktrace jar signKixelflutPublication publishToSonatype closeAndReleaseSonatypeStagingRepository
