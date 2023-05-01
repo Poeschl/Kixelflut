@@ -18,9 +18,7 @@ data class Pixel(val point: Point, val color: Color) {
 
         other as Pixel
 
-        if (point != other.point) return false
-
-        return true
+        return point == other.point
     }
 
     override fun hashCode(): Int {
@@ -51,6 +49,15 @@ class PixelMatrix(val width: Int, val height: Int) {
         data.remove(point)
     }
 
+    fun get(point: Point): Pixel? {
+        val color = data[point]
+        return if (color != null) {
+            Pixel(point, color)
+        } else {
+            null
+        }
+    }
+
     fun processData(action: (Pixel) -> Unit) {
         data
             .map { Pixel(it.key, it.value) }
@@ -58,7 +65,7 @@ class PixelMatrix(val width: Int, val height: Int) {
     }
 
     fun processData(action: (Point, Color) -> Unit) {
-        data.forEach { action(it.key, it.value) };
+        data.forEach { action(it.key, it.value) }
     }
 
     override fun toString(): String {

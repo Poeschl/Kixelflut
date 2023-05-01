@@ -45,4 +45,30 @@ internal class PixelMatrixTest {
         //
         assertThat(captureList).containsOnly(testPixel2, testPixel3)
     }
+
+    @Test
+    fun get() {
+        // WHEN
+        val matrix = PixelMatrix(10, 10)
+        val testPixel = Pixel(Point(1, 1), Color.CYAN)
+        matrix.insert(testPixel)
+
+        // THEN
+        val result = matrix.get(testPixel.point)
+
+        // VERIFY
+        assertThat(result).isEqualTo(testPixel)
+    }
+
+    @Test
+    fun get_notSet() {
+        // WHEN
+        val matrix = PixelMatrix(10, 10)
+
+        // THEN
+        val result = matrix.get(Point(1, 1))
+
+        // VERIFY
+        assertThat(result).isNull()
+    }
 }
