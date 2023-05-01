@@ -1,4 +1,4 @@
-# Kixelflut [![Push tests](https://img.shields.io/github/workflow/status/Poeschl/Kixelflut/Master%20check)](https://github.com/Poeschl/Kixelflut/actions)
+# Kixelflut [![Push tests](https://img.shields.io/github/actions/workflow/status/Poeschl/Kixelflut/master-check.yaml?branch=master)](https://github.com/Poeschl/Kixelflut/actions)
 
 A [Pixelflut](https://github.com/defnull/pixelflut) interface for Java and Kotlin written in Kotlin.
 
